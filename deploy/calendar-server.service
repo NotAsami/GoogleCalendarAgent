@@ -1,0 +1,14 @@
+[Unit]
+Description=Calendar API Server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/ubuntu/calendar-agent/calendar_server.py
+WorkingDirectory=/home/ubuntu/calendar-agent
+Restart=always
+User=ubuntu
+StandardOutput=append:/home/ubuntu/calendar-agent/server.log
+StandardError=append:/home/ubuntu/calendar-agent/server.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,43 @@
+{
+  "gateway": {
+    "auth": { "mode": "none" },
+    "mode": "local",
+    "port": 18789,
+    "bind": "loopback",
+    "controlUi": {
+      "allowedOrigins": ["https://YOUR-VM-NAME.YOUR-TAILNET.ts.net"]
+    },
+    "tailscale": {
+      "mode": "serve",
+      "resetOnExit": false
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": { "primary": "anthropic/claude-haiku-4-5-20251001" },
+      "workspace": "/home/ubuntu/.openclaw/workspace",
+      "heartbeat": { "every": "0m" }
+    }
+  },
+  "providers": {
+    "anthropic": { "apiKey": "YOUR_ANTHROPIC_API_KEY" }
+  },
+  "tools": {
+    "allow": ["exec", "process", "bash"],
+    "profile": "coding"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "YOUR_TELEGRAM_BOT_TOKEN",
+      "allowFrom": ["YOUR_TELEGRAM_USER_ID"],
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist",
+      "groups": { "*": { "requireMention": true } },
+      "streaming": "partial"
+    }
+  }
+}
